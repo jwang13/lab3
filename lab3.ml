@@ -179,8 +179,16 @@ For example:
 - : bool = false
 ......................................................................*)
 
+let names (enrollments : enrollment list) : string list =
+  List.sort_uniq (compare)
+                 (List.map (fun { name; _ } -> name) enrollments) ;;
+  
 let verify (enrollments : enrollment list) : bool =
-  failwith "verify not implemented" ;;
+  List.for_all (fun l -> List.length l = 1)
+               (List.map
+                  (fun student -> names (transcript enrollments student))
+                  (ids enrollments)) ;;
+
 
 (*======================================================================
 Part 3: Polymorphism
@@ -233,20 +241,9 @@ should be as polymorphic as possible?
 Now write the function.
 ......................................................................*)
    
-(* let partition f (lst: 'a list): ('a * 'b) list=
-  let rec check_f f (mylst : 'a list) : 'b list= 
-    match mylst with
-    | [] -> []
-    |hd :: tl -> if f hd then hd :: (check_f f  mylst) else (check_f f  mylst) in
-  let rec not_f f (mylst : 'a list) : 'b list= 
-    match mylst with
-    | [] -> []
-    |hd :: tl -> if f hd then (not_f  f  mylst) else hd :: (not_f f  mylst) in
-  (check_f f lst, not_f f lst)
-  ;; *)
 
-let partition f (lst: 'a list): ('a * 'b) list=
-  fun _ -> failwith "partition not implemented" ;;
+let partition (condition: 'a -> bool) (lst: 'a list): 'a list * 'b list=
+  (List.filter(fun x -> condition(x))lst), (List.filter(fun x -> not(condition(x)))lst);;
 
 
 (*......................................................................
@@ -288,5 +285,5 @@ Given the above, what should the type of the function "apply" be?
 Now write the function.
 ......................................................................*)
 
-let apply =
-  fun _ -> failwith "apply not implemented" ;;
+let apply (myfunction: 'a -> 'b) (input: 'a) : (output: 'b) = 
+  myfunction 'a;;
