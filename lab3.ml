@@ -245,6 +245,9 @@ Now write the function.
   (check_f f lst, not_f f lst)
   ;; *)
 
+let partition =
+  fun _ -> failwith "partition not implemented" ;;
+
 
 (*......................................................................
 Exercise 12: We can think of function application itself as a
