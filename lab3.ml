@@ -59,7 +59,7 @@ point_recd and returning a point _rec as well.
 ......................................................................*)
 
 let add_point_recd (a : point_recd) (b : point_recd) : point_recd =
-  {x= a.x + b.x; y = a.y+b.y)
+  {x= a.x + b.x; y = a.y+b.y}
    ;;
 
 (* Recall the dot product from Lab 2. The dot product of two points
@@ -71,7 +71,7 @@ Exercise 3: Write a function dot_product_pair to compute the dot
 product for points encoded as the point_pair type.
 ......................................................................*)
 
-let dot_product_pair (p1 : point_pair) (p2 : point_pair) : int =
+let dot_product_pair ((x1,y1) : point_pair) ((x2,y2) : point_pair) : int =
   x1*x2 + y1*y2 ;;
 
 (*......................................................................
@@ -152,7 +152,7 @@ For example:
 let transcript (enrollments : enrollment list)
                (student : int)
              : enrollment list =
-  List.filter(x -> x.id = student) enrollments;;
+  List.filter(fun x -> (x.id = student)) enrollments;;
   
 (*......................................................................
 Exercise 8: Define a function called ids that takes an enrollment
@@ -167,7 +167,7 @@ For example:
 ......................................................................*)
 
 let ids (enrollments: enrollment list) : int list =
-  List.sort_uniq(List.map(x->x.id) enrollments);;
+  List.sort_uniq (compare) (List.map(fun x->x.id) enrollments);;
   
 (*......................................................................
 Exercise 9: Define a function called verify that determines whether all
