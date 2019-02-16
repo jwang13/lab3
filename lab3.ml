@@ -245,7 +245,7 @@ Now write the function.
   (check_f f lst, not_f f lst)
   ;; *)
 
-let partition =
+let partition f (lst: 'a list): ('a * 'b) list=
   fun _ -> failwith "partition not implemented" ;;
 
 
