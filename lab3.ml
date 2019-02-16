@@ -285,5 +285,5 @@ Given the above, what should the type of the function "apply" be?
 Now write the function.
 ......................................................................*)
 
-let apply (myfunction: 'a -> 'b) (input: 'a) : (output: 'b) = 
-  myfunction 'a;;
+let apply (myfunction: 'a -> 'b) (input: 'a) : 'b = 
+  myfunction input;;
